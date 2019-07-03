@@ -1,6 +1,28 @@
 require "rbwrap/version"
+require "rbwrap/configuration"
+require "rbwrap/server"
 require "rbwrap/rbwrap"
 
 module Rbwrap
+  class << self
+    attr_reader :config, :server
+
+    def configure(&block)
+      return unless block_given?
+
+      @config = Configuration.new
+      yield(@config)
+
+      Kernel.trap(config.signal) do
+        Thread.new do
+          puts "i am here"
+          gets
+          puts "there"
+          @server = Server.new(config.socket_path)
+          @server.call
+        end
+      end
+    end
+  end
   # Your code goes here...
 end
