@@ -7,6 +7,7 @@ void Init_rbwrap();
 VALUE rbwrap_initialize(VALUE self);
 static VALUE signal_handler_proc;
 static int test_val = 0;
+static int test_val2 = 0;
 
 signal_handler_wrapper(VALUE arg, VALUE ctx)
 {
@@ -32,4 +33,3 @@ VALUE rbwrap_initialize(VALUE self) {
     }
     return self;
 }
-

@@ -1,3 +1,4 @@
+require 'socket'
 require "rbwrap/version"
 require "rbwrap/configuration"
 require "rbwrap/server"
@@ -15,14 +16,11 @@ module Rbwrap
 
       Kernel.trap(config.signal) do
         Thread.new do
-          puts "i am here"
-          gets
-          puts "there"
+          puts "create socket server"
           @server = Server.new(config.socket_path)
           @server.call
         end
       end
     end
   end
-  # Your code goes here...
 end
