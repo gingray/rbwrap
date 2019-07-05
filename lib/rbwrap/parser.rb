@@ -1,12 +1,21 @@
 module Rbwrap
   # nodoc
   class Parser
+    INSTANCE_METHOD = '.'.freeze
+    CLASS_METHOD = '#'.freeze
+
     def initialize input
       @input = input
     end
 
     def call
 
+    end
+
+    def parse
+      @method_type = nil
+      @method_type = INSTANCE_METHOD if @input.include? INSTANCE_METHOD
+      @method_type = CLASS_METHOD if @input.include? CLASS_METHOD
     end
 
     def template
