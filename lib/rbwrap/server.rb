@@ -20,7 +20,13 @@ module Rbwrap
               @clients << @server.accept_nonblock
             else
               data = sock.read_nonblock(4096)
-              resp = eval(data_to_eval)
+              begin
+                parser = Parser.new(data)
+                to_eval = parser.call
+                resp = eval(to_eval)
+              rescue ErrorBase => ex
+                resp = ex.message
+              end
               sock.write(resp || '')
               puts "echo data: #{data}"
             end

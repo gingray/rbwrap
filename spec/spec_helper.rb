@@ -13,3 +13,23 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+class TestConst
+  class NestedConst
+    def self.method_2
+    end
+    def method_1
+    end
+  end
+end
+
+class Test
+  attr_accessor :var
+  def initialize
+    @var = []
+  end
+
+  def call(x)
+    puts "this is :#{x}"
+  end
+end

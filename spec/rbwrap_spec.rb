@@ -1,6 +1,5 @@
-RSpec.describe Rbwrap, focus: true do
+RSpec.describe Rbwrap  do
   it "has a version number" do
-    binding.pry
     expect(Rbwrap::VERSION).not_to be nil
   end
 
