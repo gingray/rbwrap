@@ -4,6 +4,7 @@ require "rbwrap/exceptions"
 require "rbwrap/configuration"
 require "rbwrap/server"
 require "rbwrap/parser"
+require "rbwrap/parser_new"
 require "rbwrap/rbwrap"
 
 module Rbwrap

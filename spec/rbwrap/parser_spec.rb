@@ -12,7 +12,7 @@ RSpec.describe Rbwrap::Parser do
     end
   end
 
-  context 'parse case 2', focus: true do
+  context 'parse case 2' do
     let(:input) { '   Test.call    '}
     before { service.call }
     it do
