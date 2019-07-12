@@ -1,5 +1,5 @@
 module Rbwrap
-  class ParserNew
+  class WrapMethodParser
     NAMESPACE = '::'.freeze
     CONST_NAME = 'CONST'.freeze
     INSTANCE_METHOD = '.'.freeze
@@ -13,10 +13,9 @@ module Rbwrap
 
     def parse(str)
       stream = str.strip
-      binding.pry
       buffer = ''
 
-      while !stream.empty?
+      until stream.empty?
         buffer << stream.slice!(0)
 
         if buffer == NAMESPACE
@@ -37,9 +36,9 @@ module Rbwrap
           next
         end
 
-        if buffer =~ /[[:upper:]]/
+        if buffer =~ /^[[:upper:]]/
           ch = stream.slice!(0)
-          while !ch.nil? && ch =~ /[[:alnum:]]/
+          while !ch.nil? && ch =~ /[a-zA-Z0-9_]/
             buffer << ch
             ch = stream.slice!(0)
           end
@@ -49,7 +48,7 @@ module Rbwrap
           next
         end
 
-        if buffer =~ /[[:lower:]]/
+        if buffer =~ /^[[:lower:]]/
           ch = stream.slice!(0)
           while !ch.nil? && ch =~ /[[a-z_!?0-9]]/
             buffer << ch
@@ -61,7 +60,8 @@ module Rbwrap
           next
         end
       end
-      binding.pry
+
+      raise ParserError.new(str, buffer) unless buffer.empty?
     end
   end
 end

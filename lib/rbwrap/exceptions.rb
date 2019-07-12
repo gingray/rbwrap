@@ -20,4 +20,17 @@ module Rbwrap
       super("Method not exist: '#{method_name}'")
     end
   end
+
+  # nodoc
+  class ParserError < ErrorBase
+    def initialize(original, buffer)
+      super("Parser error: original: <#{original}> buffer: <#{buffer}>")
+    end
+  end
+
+  class WrapMethodBuilerError < ErrorBase
+    def initialize(msg, state)
+      super("#{msg} -> #{state}")
+    end
+  end
 end
