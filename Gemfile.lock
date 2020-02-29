@@ -12,7 +12,7 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    rake (10.5.0)
+    rake (13.0.1)
     rake-compiler (1.0.7)
       rake
     rspec (3.8.0)
@@ -35,7 +35,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.16)
   pry
-  rake (~> 10.0)
+  rake (~> 13.0)
   rake-compiler
   rbwrap!
   rspec (~> 3.0)
